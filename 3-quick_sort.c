@@ -12,29 +12,29 @@ int Lomoto_partition(int *array, int low, int high)
 {
 	int pivot = array[high];
 	int i = low - 1;
-	int swap, j, k;
+	int swap, j;
 
 	for (j = low; j < high; j++)
 	{
 		if (array[j] < pivot)
 		{
 			i++;
-			swap = array[i];
-			array[i] = array[j];
-			array[j] = swap;
-			for (k = low; k <= high; k++)
+			if (i != j)
 			{
-				printf("%d ", array[k]);
+				swap = array[i];
+                        	array[i] = array[j];
+                        	array[j] = swap;
+				print_array(array, high + 1);
 			}
-			printf("\n");
 		}
 	}
-	swap = array[i + 1];
-	array[i + 1] = array[high];
-	array[high] = swap;
-	for (k = low; k <= high; k++)
-		printf("%d ", array[k]);
-	printf("\n");
+	if (array[i + 1] > array[high])
+	{
+		swap = array[i + 1];
+        	array[i + 1] = array[high];
+        	array[high] = swap;
+		print_array(array, high + 1);
+	}
 
 	return (i + 1);
 }
