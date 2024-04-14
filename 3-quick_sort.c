@@ -8,7 +8,7 @@
  * Return: index of the pivot element.
  */
 
-int Lomoto_partition(int *array, int low, int high)
+int Lomoto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
 	int i = low - 1;
@@ -24,7 +24,7 @@ int Lomoto_partition(int *array, int low, int high)
 				swap = array[i];
                         	array[i] = array[j];
                         	array[j] = swap;
-				print_array(array, high + 1);
+				print_array(array, size);
 			}
 		}
 	}
@@ -33,7 +33,7 @@ int Lomoto_partition(int *array, int low, int high)
 		swap = array[i + 1];
         	array[i + 1] = array[high];
         	array[high] = swap;
-		print_array(array, high + 1);
+		print_array(array, size);
 	}
 
 	return (i + 1);
@@ -47,15 +47,15 @@ int Lomoto_partition(int *array, int low, int high)
  * Return: last index return by the Lomoto partition.
  */
 
-void quick_sort_helper(int *array, int low, int high)
+void quick_sort_helper(int *array, int low, int high, size_t size)
 {
 	int part = 0;
 
 	if (low < high)
 	{
-		part = Lomoto_partition(array, low, high);
-		quick_sort_helper(array, low, part - 1);
-		quick_sort_helper(array, part + 1, high);
+		part = Lomoto_partition(array, low, high, size);
+		quick_sort_helper(array, low, part - 1, size);
+		quick_sort_helper(array, part + 1, high, size);
 	}
 }
 
@@ -71,5 +71,5 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	quick_sort_helper(array, 0, size - 1);
+	quick_sort_helper(array, 0, size - 1, size);
 }
