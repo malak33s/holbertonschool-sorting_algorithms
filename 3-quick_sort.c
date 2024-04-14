@@ -5,6 +5,7 @@
  * @array: an array of integer.
  * @low: lower index.
  * @high: higher index.
+ * @size: size.
  * Return: index of the pivot element.
  */
 
@@ -22,8 +23,8 @@ int Lomoto_partition(int *array, int low, int high, size_t size)
 			if (i != j)
 			{
 				swap = array[i];
-                        	array[i] = array[j];
-                        	array[j] = swap;
+				array[i] = array[j];
+				array[j] = swap;
 				print_array(array, size);
 			}
 		}
@@ -31,8 +32,8 @@ int Lomoto_partition(int *array, int low, int high, size_t size)
 	if (array[i + 1] > array[high])
 	{
 		swap = array[i + 1];
-        	array[i + 1] = array[high];
-        	array[high] = swap;
+		array[i + 1] = array[high];
+		array[high] = swap;
 		print_array(array, size);
 	}
 
@@ -44,6 +45,7 @@ int Lomoto_partition(int *array, int low, int high, size_t size)
  * @array: an array of integer.
  * @low: lower index.
  * @high: higher index.
+ * @size: size.
  * Return: last index return by the Lomoto partition.
  */
 
